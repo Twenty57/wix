@@ -7,6 +7,7 @@
     <EnableSourceLink Condition=" '$(NCrunch)' == '1' ">false</EnableSourceLink>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <NoWarn>$(NoWarn);MSB3026</NoWarn>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
 
     <ProjectName Condition=" '$(ProjectName)' == '' ">$(MSBuildProjectName)</ProjectName>
     <RootFolder>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\))</RootFolder>
