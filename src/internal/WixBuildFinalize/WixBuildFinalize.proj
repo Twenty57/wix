@@ -12,4 +12,8 @@
         DestinationFile="$(ArtifactsFolder)\wix-pdbs.$(Version).zip"
         Overwrite="true" />
   </Target>
+  
+  <Target Name="PushPackages" BeforeTargets="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
+    <Exec Command="dotnet nuget push --interactive $(ArtifactsFolder)*.nupkg --api-key SharedFeed --source https://pkgs.dev.azure.com/twenty57/Public/_packaging/shared/nuget/v3/index.json" />
+  </Target>
 </Project>
