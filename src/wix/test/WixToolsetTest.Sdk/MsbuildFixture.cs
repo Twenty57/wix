@@ -6,6 +6,7 @@ namespace WixToolsetTest.Sdk
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using WixInternal.MSTestSupport;
 
@@ -935,7 +936,8 @@ namespace WixToolsetTest.Sdk
 
         private static string ReplacePathsInMessage(string message, string baseFolder)
         {
-            return message.Trim().Replace(baseFolder, "<basefolder>");
+            string pathRegex = $"{Regex.Escape(Path.GetPathRoot(baseFolder))}.*?{Regex.Escape(Path.DirectorySeparatorChar + Path.GetFileName(baseFolder))}";
+            return Regex.Replace(message.Trim(), pathRegex, "<basefolder>");
         }
 
         private static string PathAndSize(string path, string replace)
